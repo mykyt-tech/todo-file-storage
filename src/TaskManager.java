@@ -7,6 +7,10 @@ public class TaskManager {
     public static void main(String[] args) {
     }
 
+    public static ArrayList<Task> getTasks() {
+        return new ArrayList<>(tasks);
+    }
+
     public static void addTask(String title, LocalDateTime dueDate) {
         int newID = tasks.size() + 1;
         tasks.add(new Task(newID, title, dueDate));
