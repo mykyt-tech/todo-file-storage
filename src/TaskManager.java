@@ -15,4 +15,8 @@ public class TaskManager {
     public static void deleteTask(int id) {
         tasks.remove(id);
     }
+
+    public static void updateTaskStatus(int id, TaskStatus status) {
+        tasks.get(id).setStatus(status);
+    }
 }
