@@ -4,9 +4,6 @@ import java.util.ArrayList;
 public class TaskManager {
     private static final ArrayList<Task> tasks = new ArrayList<>();
 
-    public static void main(String[] args) {
-    }
-
     public static ArrayList<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
