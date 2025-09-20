@@ -4,12 +4,13 @@ public class Task {
     private int id;
     private String title;
     private LocalDateTime dueDate;
-    private String status;
+    private TaskStatus status;
 
     public Task(int id, String title, LocalDateTime dueDate) {
         this.id = id;
         this.title = title;
         this.dueDate = dueDate;
+        this.status = TaskStatus.TODO;
     }
 
     public int getId() {
@@ -24,7 +25,7 @@ public class Task {
         return dueDate != null ? LocalDateTime.from(dueDate) : null;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
@@ -36,7 +37,7 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 }
