@@ -64,12 +64,20 @@ public class TaskApp {
                     newStatus = scanner.nextInt();
                     scanner.nextLine();
 
+                    boolean updateStatusResult;
                     if (newStatus == 1) {
-                        TaskManager.updateTaskStatus(taskNumber, TaskStatus.IN_PROGRESS);
+                        updateStatusResult = TaskManager.updateTaskStatus(taskNumber, TaskStatus.IN_PROGRESS);
                     } else if (newStatus == 2) {
-                        TaskManager.updateTaskStatus(taskNumber, TaskStatus.DONE);
+                        updateStatusResult = TaskManager.updateTaskStatus(taskNumber, TaskStatus.DONE);
                     } else {
                         System.out.println("Incorrect status");
+                        break;
+                    }
+
+                    if (!updateStatusResult) {
+                        System.out.println("-----------------------------");
+                        System.out.println("Something went wrong");
+                        System.out.println("Task status cannot be changed");
                         break;
                     }
 
@@ -83,8 +91,16 @@ public class TaskApp {
                     taskNumber = scanner.nextInt();
                     scanner.nextLine();
 
-                    TaskManager.deleteTask(taskNumber);
-                    System.out.println("Task removed successfully");
+                    boolean deleteResult = TaskManager.deleteTask(taskNumber);
+                    if (deleteResult) {
+                        System.out.println("-----------------------------");
+                        System.out.println("Task removed successfully");
+                    } else {
+                        System.out.println("-----------------------------");
+                        System.out.println("Something went wrong");
+                        System.out.println("Task cannot be removed");
+                    }
+
                     break;
                 case 4:
                     System.out.println("-----------------------------");
@@ -92,7 +108,9 @@ public class TaskApp {
 
                     for (int i = 0; i < tasks.size(); i++) {
                         Task task = tasks.get(i);
-                        System.out.println(i + ". Title: " + task.getTitle() + ", due date: " + task.getDueDate().format(formatter));
+                        System.out.println(i + ". Title: " + task.getTitle()
+                                + ", due date: " + task.getDueDate().format(formatter)
+                                + ", status: " + task.getStatus());
                     }
 
                     break;

@@ -12,11 +12,21 @@ public class TaskManager {
         tasks.add(new Task(title, dueDate));
     }
 
-    public static void deleteTask(int id) {
-        tasks.remove(id);
+    public static boolean deleteTask(int id) {
+        try {
+            tasks.remove(id);
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
-    public static void updateTaskStatus(int number, TaskStatus status) {
-        tasks.get(number).setStatus(status);
+    public static boolean updateTaskStatus(int number, TaskStatus status) {
+        try {
+            tasks.get(number).setStatus(status);
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 }
