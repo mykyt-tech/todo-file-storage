@@ -17,7 +17,7 @@ public class TaskApp {
             System.out.println("2. Update task status");
             System.out.println("3. Delete task");
             System.out.println("4. View all tasks");
-//            System.out.println("5. Exit");
+            System.out.println("5. Exit");
             System.out.println("-----------------------------");
             System.out.print("Enter your choice: ");
 
@@ -96,6 +96,12 @@ public class TaskApp {
                     }
 
                     break;
+                case 5:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("-----------------------------");
+                    System.out.println("Incorrect option!");
             }
         }
     }
