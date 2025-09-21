@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TaskApp {
@@ -15,7 +16,7 @@ public class TaskApp {
             System.out.println("1. Add new task");
             System.out.println("2. Update task status");
             System.out.println("3. Delete task");
-//            System.out.println("4. View all tasks");
+            System.out.println("4. View all tasks");
 //            System.out.println("5. Exit");
             System.out.println("-----------------------------");
             System.out.print("Enter your choice: ");
@@ -84,6 +85,16 @@ public class TaskApp {
 
                     TaskManager.deleteTask(taskNumber);
                     System.out.println("Task removed successfully");
+                    break;
+                case 4:
+                    System.out.println("-----------------------------");
+                    ArrayList<Task> tasks = TaskManager.getTasks();
+
+                    for (int i = 0; i < tasks.size(); i++) {
+                        Task task = tasks.get(i);
+                        System.out.println(i + ". Title: " + task.getTitle() + ", due date: " + task.getDueDate().format(formatter));
+                    }
+
                     break;
             }
         }
