@@ -9,15 +9,14 @@ public class TaskManager {
     }
 
     public static void addTask(String title, LocalDateTime dueDate) {
-        int newID = tasks.size() + 1;
-        tasks.add(new Task(newID, title, dueDate));
+        tasks.add(new Task(title, dueDate));
     }
 
     public static void deleteTask(int id) {
         tasks.remove(id);
     }
 
-    public static void updateTaskStatus(int id, TaskStatus status) {
-        tasks.get(id - 1).setStatus(status);
+    public static void updateTaskStatus(int number, TaskStatus status) {
+        tasks.get(number).setStatus(status);
     }
 }

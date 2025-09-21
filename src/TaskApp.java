@@ -14,7 +14,7 @@ public class TaskApp {
             System.out.println("Please choose an option:");
             System.out.println("1. Add new task");
             System.out.println("2. Update task status");
-//            System.out.println("3. Delete task");
+            System.out.println("3. Delete task");
 //            System.out.println("4. View all tasks");
 //            System.out.println("5. Exit");
             System.out.println("-----------------------------");
@@ -23,7 +23,7 @@ public class TaskApp {
             int option = scanner.nextInt();
             scanner.nextLine();
 
-            int taskId;
+            int taskNumber;
 
             switch (option) {
                 case 1:
@@ -53,9 +53,9 @@ public class TaskApp {
                     int newStatus;
 
                     System.out.println("-----------------------------");
-                    System.out.print("Enter task id: ");
+                    System.out.print("Enter task number: ");
 
-                    taskId = scanner.nextInt();
+                    taskNumber = scanner.nextInt();
                     scanner.nextLine();
 
                     System.out.print("Choose new status (1. IN_PROGRESS, 2. DONE): ");
@@ -64,9 +64,9 @@ public class TaskApp {
                     scanner.nextLine();
 
                     if (newStatus == 1) {
-                        TaskManager.updateTaskStatus(taskId, TaskStatus.IN_PROGRESS);
+                        TaskManager.updateTaskStatus(taskNumber, TaskStatus.IN_PROGRESS);
                     } else if (newStatus == 2) {
-                        TaskManager.updateTaskStatus(taskId, TaskStatus.DONE);
+                        TaskManager.updateTaskStatus(taskNumber, TaskStatus.DONE);
                     } else {
                         System.out.println("Incorrect status");
                         break;
@@ -74,6 +74,16 @@ public class TaskApp {
 
                     System.out.println("-----------------------------");
                     System.out.println("Task status changed successfully");
+                    break;
+                case 3:
+                    System.out.println("-----------------------------");
+                    System.out.print("Enter task number: ");
+
+                    taskNumber = scanner.nextInt();
+                    scanner.nextLine();
+
+                    TaskManager.deleteTask(taskNumber);
+                    System.out.println("Task removed successfully");
                     break;
             }
         }

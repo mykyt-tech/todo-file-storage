@@ -1,20 +1,14 @@
 import java.time.LocalDateTime;
 
 public class Task {
-    private int id;
     private String title;
     private LocalDateTime dueDate;
     private TaskStatus status;
 
-    public Task(int id, String title, LocalDateTime dueDate) {
-        this.id = id;
+    public Task(String title, LocalDateTime dueDate) {
         this.title = title;
         this.dueDate = dueDate;
         this.status = TaskStatus.TODO;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getTitle() {
