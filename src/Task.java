@@ -11,6 +11,12 @@ public class Task {
         this.status = TaskStatus.TODO;
     }
 
+    public Task(String title, LocalDateTime dueDate, TaskStatus status) {
+        this.title = title;
+        this.dueDate = dueDate;
+        this.status = status;
+    }
+
     public String getTitle() {
         return title;
     }

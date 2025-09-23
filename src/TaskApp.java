@@ -1,3 +1,4 @@
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,6 +10,9 @@ public class TaskApp {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         boolean running = true;
+        String fileName = "tasks.txt";
+
+        readTasksFromFile(fileName);
 
         while (running) {
             System.out.println("-----------------------------");
@@ -121,6 +125,43 @@ public class TaskApp {
                     System.out.println("-----------------------------");
                     System.out.println("Incorrect option!");
             }
+        }
+
+        writeTasksToFile(fileName);
+    }
+
+    private static void writeTasksToFile(String filename) {
+        try (FileOutputStream fos = new FileOutputStream(filename)) {
+            ArrayList<Task> tasks = TaskManager.getTasks();
+
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                String strTask = i + "," + task.getTitle() + "," + task.getDueDate() + "," + task.getStatus() + "\n";
+                fos.write(strTask.getBytes());
+            }
+        } catch (IOException e) {
+            System.out.println("-----------------------------");
+            System.out.println("Something went wrong");
+            System.out.println("Tasks cannot be saved to file");
+        }
+    }
+
+    private static void readTasksFromFile(String fileName) {
+        try (FileInputStream fis = new FileInputStream(fileName)) {
+                byte[] data = fis.readAllBytes();
+                String content = new String(data);
+                String[] lines = content.split("\n");
+
+                for (String line : lines) {
+                    String[] fields = line.split(",");
+                    TaskManager.addTaskWithStatus(fields[1], LocalDateTime.parse(fields[2]), TaskStatus.valueOf(fields[3]));
+                }
+        } catch (FileNotFoundException e) {
+            // Do nothing
+        } catch (IOException e) {
+            System.out.println("-----------------------------");
+            System.out.println("Something went wrong");
+            System.out.println("Tasks cannot be read to file");
         }
     }
 }

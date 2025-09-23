@@ -12,6 +12,10 @@ public class TaskManager {
         tasks.add(new Task(title, dueDate));
     }
 
+    public static void addTaskWithStatus(String title, LocalDateTime dueDate, TaskStatus status) {
+        tasks.add(new Task(title, dueDate, status));
+    }
+
     public static boolean deleteTask(int id) {
         try {
             tasks.remove(id);
